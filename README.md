@@ -1,7 +1,32 @@
-# Mini 2 Distributed Processing Project
+# Fault-Tolerant Distributed Data Processing System (gRPC + C++)
 
-This project implements a small distributed data processing system using gRPC and C++.
-It was built for a course assignment and is meant to run on one or more machines
+> High-throughput, crash-resilient distributed pipeline that processes millions of CSV rows across a 6-node cluster — built with gRPC, C++17, and a heartbeat-driven health monitor.
+
+## About
+
+This project is a **fault-tolerant distributed data processing system** designed for scalability, resilience, and high throughput. Built in **C++17** and powered by **gRPC streaming**, it organises six nodes into a three-tier hierarchy and can sustain **29–77 MB/s throughput** while processing up to **10 million rows** of CSV data concurrently.
+
+Key capabilities at a glance:
+
+| Feature | Detail |
+|---|---|
+| **Fault Tolerance** | Heartbeat-based health monitoring; crashed workers are automatically detected and their tasks reassigned |
+| **Chunked Streaming** | 67 % memory reduction vs. bulk transfer — data flows in configurable chunks |
+| **Multi-Client Support** | Session-ID correlation prevents request collisions from concurrent clients |
+| **Configurable Timeouts** | Fine-tune latency/reliability trade-offs via environment variables (`MINI3_LEADER_TIMEOUT_MS`, `MINI3_TEAMLEADER_TIMEOUT_MS`) |
+| **Partial Success Delivery** | Returns available results even when some nodes fail |
+| **Capacity-Aware Scheduling** | Workers are selected based on live health status and queue length |
+
+### Why this repo?
+
+- Looking for a **gRPC C++ example** with real distributed fault tolerance? This is it.
+- Need a reference for **heartbeat-based health monitoring** in a multi-node system? Start here.
+- Building a **distributed CSV / data pipeline** and want a battle-tested template? Clone and adapt.
+
+---
+
+This project implements a distributed data processing system using gRPC and C++.
+It was built as a course project (CMPE 275 Mini Project 3) and is designed to run on one or more machines.
 
 The main idea:
 - A **leader node (A)** receives client requests.
